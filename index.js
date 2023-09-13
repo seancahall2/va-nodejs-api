@@ -206,5 +206,5 @@ app.get('/api/getFileInfo', (req, res) => {
 
 // Listen on `port` and 0.0.0.0
 app.listen(port, "0.0.0.0", function () {
-    // ...
+    console.log('Server listening on some port ' + port + '!');
 });
