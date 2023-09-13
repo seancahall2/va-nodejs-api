@@ -1,6 +1,10 @@
 const express = require('express');
 const app = express();
 const BoxSDK = require('box-node-sdk');
+
+// Use PORT provided in environment or default to 3000
+const port = process.env.PORT || 3000;
+
 const sdkConfig = {
     boxAppSettings: {
         clientID: "f61ovzp5e2hknwclrm1dnhmfmzc20qj7",
@@ -200,6 +204,7 @@ app.get('/api/getFileInfo', (req, res) => {
 
 });
 
-app.listen(3000, () => {
-    console.log('Server listening on port 3000');
+// Listen on `port` and 0.0.0.0
+app.listen(port, "0.0.0.0", function () {
+    // ...
 });
