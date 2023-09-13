@@ -31,7 +31,7 @@ const client = sdk.getAnonymousClient();
 app.use((req, res, next) => {
     // res.header("Access-Control-Allow-Origin",
     //  "http://localhost:4200");
-    const allowedOrigins = ['http://localhost:4200', 'https://seancahall2.github.io/'];
+    const allowedOrigins = ['http://localhost:4200', 'https://seancahall2.github.io'];
     const origin = req.headers.origin;
     if (allowedOrigins.includes(origin)) {
         res.setHeader('Access-Control-Allow-Origin', origin);
