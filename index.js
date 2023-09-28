@@ -59,11 +59,8 @@ app.get('/api/search', (req, res) => {
         req.query.searchTerm,
         {
             fields: 'name,id,description,tags',
-            // file_extensions: 'pdf,doc',
             limit: 200,
-            offset: 0,
-            ancestor_folder_ids: "165682361236,165679997956,165680323304,165681470106,173746409655,165681353082,165681298231"
-            // content_types: ["tags"]
+            offset: 0
         })
         .then(results => {
             console.log('Data received!');
@@ -132,8 +129,6 @@ app.get('/api/filesByFolder', (req, res) => {
 
 app.get('/api/auth', (req, res) => {
 
-    console.log('here!');
-
     var BoxSDK = require('box-node-sdk');
 
     // Initialize the SDK with your app credentials
@@ -166,14 +161,12 @@ app.get('/api/writeJson', (req, res) => {
     const fs = require('fs');
 
     let rawdata = require('./app/tag-array.json');
-    // let tagData = JSON.parse(rawdata);
     let tagObject = { tag: req.query.tag, count: req.query.count };
     rawdata.tagDataDad.push(tagObject);
 
     let data = JSON.stringify(rawdata);
     console.log('data', data);
     fs.writeFileSync('./app/tag-array.json', data);
-    console.log('Data written to file');
 
     res.json({
         message:
@@ -183,16 +176,16 @@ app.get('/api/writeJson', (req, res) => {
 });
 
 app.get('/api/getFileInfo', (req, res) => {
-    var BoxSDK = require('box-node-sdk');
+    //    var BoxSDK = require('box-node-sdk');
     console.log('id in node: ' + req.query.id);
     // Initialize the SDK with your app credentials
-    var sdk = new BoxSDK({
-        clientID: '1rcqsqivxd3hd6tr7f7mhnd04jpq872z',
-        clientSecret: 'bhCUuokWcnMFDdZIx6D21gsDFDdR467o'
-    });
+    // var sdk = new BoxSDK({
+    //     clientID: '1rcqsqivxd3hd6tr7f7mhnd04jpq872z',
+    //     clientSecret: 'bhCUuokWcnMFDdZIx6D21gsDFDdR467o'
+    // });
 
-    // Create a basic API client, which does not automatically refresh the access token
-    var client = sdk.getBasicClient('JRexxo9ozfNR6YCRVeYLpGrWjw5cyUYI');
+    // // Create a basic API client, which does not automatically refresh the access token
+    // var client = sdk.getBasicClient('JRexxo9ozfNR6YCRVeYLpGrWjw5cyUYI');
 
     client.files.get('1017868008921')
         .then(file => {
